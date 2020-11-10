@@ -29,7 +29,7 @@ const Tab2: React.FC = () => {
                 <AddModal opened={showModal} setShowModal={setShowModal} />
                 <IonFab vertical='bottom' horizontal='end' slot='fixed'>
                     <IonFabButton color='success' onClick={() => setShowModal(true)}>
-                        <IonIcon class="white--text" icon={add} />
+                        <IonIcon class='white--text' icon={add} />
                     </IonFabButton>
                 </IonFab>
             </IonContent>

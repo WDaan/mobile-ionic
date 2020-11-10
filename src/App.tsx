@@ -35,27 +35,31 @@ import './theme/variables.css'
 
 import './App.css'
 
+import { RecoilRoot } from 'recoil'
+
 const App: React.FC = () => (
     <IonApp>
-        <IonReactRouter>
-            <IonTabs>
-                <IonRouterOutlet>
-                    <Route path='/home' component={Home} exact={true} />
-                    <Route path='/settings' component={Settings} exact={true} />
-                    <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
-                </IonRouterOutlet>
-                <IonTabBar slot='bottom'>
-                    <IonTabButton tab='home' href='/home'>
-                        <IonIcon icon={home} />
-                        <IonLabel>Home</IonLabel>
-                    </IonTabButton>
-                    <IonTabButton tab='settings' href='/settings'>
-                        <IonIcon icon={cog} />
-                        <IonLabel>Settings</IonLabel>
-                    </IonTabButton>
-                </IonTabBar>
-            </IonTabs>
-        </IonReactRouter>
+        <RecoilRoot>
+            <IonReactRouter>
+                <IonTabs>
+                    <IonRouterOutlet>
+                        <Route path='/home' component={Home} exact />
+                        <Route path='/settings' component={Settings} exact />
+                        <Route path='/' render={() => <Redirect to='/home' />} exact />
+                    </IonRouterOutlet>
+                    <IonTabBar slot='bottom'>
+                        <IonTabButton tab='home' href='/home'>
+                            <IonIcon icon={home} />
+                            <IonLabel>Home</IonLabel>
+                        </IonTabButton>
+                        <IonTabButton tab='settings' href='/settings'>
+                            <IonIcon icon={cog} />
+                            <IonLabel>Settings</IonLabel>
+                        </IonTabButton>
+                    </IonTabBar>
+                </IonTabs>
+            </IonReactRouter>
+        </RecoilRoot>
     </IonApp>
 )
 

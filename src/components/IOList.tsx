@@ -9,36 +9,30 @@ import IO from '../services/io'
 
 import { IOType, Pin } from '../models/pin'
 
+import { ios as iosAtom } from '../services/store'
+
+import { useRecoilValue } from 'recoil'
 
 interface ContainerProps {
-    type: string
+    type: IOType
 }
 
 const IOList: React.FC<ContainerProps> = ({ type }) => {
 
-    const [ios, setIOs] = useState<Pin[]>(IO.getIOs(type))
+    const ios = useRecoilValue(iosAtom)
 
-    const [shouldInterval2] = useState(false);
-
-    useEffect(() => {
-        if (shouldInterval2) {
-            const interval = setInterval(() => setIOs(IO.getIOs(type)),
-                1000
-            );
-
-            return () => clearInterval(interval);
-        }
-    }, [shouldInterval2, ios, type]);
-
+    const title = type === IOType.Input ? 'Inputs' : 'Outputs'
 
     return (
         <div>
-            <IonTitle className='title'>{type}</IonTitle>
+            <IonTitle className='title'>{title}</IonTitle>
             <IonCard>
-                <IonCardContent className="no-padding pr-1">
+                <IonCardContent className='no-padding pr-1'>
                     <IonList lines='inset'>
-                        {ios && ios.length && ios.map(io =>
-                            <IOItem key={io.pin} pin={io} />)
+                        {ios && ios.length &&
+                            ios.filter((pin: Pin) => pin.type === type)
+                                .map((io: Pin) =>
+                                    <IOItem key={io.pin} pin={io} />)
                         }
                     </IonList>
                 </IonCardContent>

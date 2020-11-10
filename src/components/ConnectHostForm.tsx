@@ -12,7 +12,7 @@ const ConnectHostForm: React.FC = () => {
     }
 
     return (
-        <div className="pt-1 pb-1">
+        <div className='pt-1 pb-1'>
             <IonCard>
                 <IonCardContent>
                     <IonItem>
@@ -20,8 +20,8 @@ const ConnectHostForm: React.FC = () => {
                         <IonInput
                             value={host} placeholder='Enter host'
                             onIonChange={e => setHost(e.detail.value!)} />
-                        <IonButton className="float-right" color='success' onClick={() => saveHost()}>
-                            <IonIcon className="white--text" icon={checkmarkOutline} />
+                        <IonButton className='float-right' color='success' onClick={() => saveHost()}>
+                            <IonIcon className='white--text' icon={checkmarkOutline} />
                         </IonButton>
                     </IonItem>
                 </IonCardContent>

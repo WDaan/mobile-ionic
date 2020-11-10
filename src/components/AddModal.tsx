@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { IonModal, IonButton, IonContent, IonList, IonInput, IonTitle, IonItem, IonLabel, IonSelect, IonSelectOption } from '@ionic/react'
+import { useSetRecoilState } from 'recoil'
 
+import { ios } from '../services/store'
 import { IOType } from '../models/pin'
+import IO from '../services/io'
 
 interface ContainerProps {
     opened: boolean,
@@ -13,9 +16,14 @@ const AddModal: React.FC<ContainerProps> = ({ opened, setShowModal }) => {
     const [pin, setPin] = useState<number>()
     const [type, setType] = useState<IOType>()
 
-    function addIO() {
-        // add io with service
+    const setIos = useSetRecoilState(ios)
 
+    async function addIO() {
+        if (!pin) return
+        
+        const mode = type === IOType.Input ? 'in' : 'out'
+        await IO.addIo(pin, mode)
+        setIos(await IO.fetchIos())
         setShowModal(false)
     }
 
@@ -33,7 +41,7 @@ const AddModal: React.FC<ContainerProps> = ({ opened, setShowModal }) => {
                     </IonItem>
                     <IonItem>
                         <IonLabel position='fixed'>Type</IonLabel>
-                        <IonSelect interface='action-sheet' value={type} placeholder='Type' onIonChange={e => setType(e.detail.value)}>
+                        <IonSelect interface='action-sheet' aria-required value={type} placeholder='Type' onIonChange={e => setType(e.detail.value)}>
                             <IonSelectOption value={IOType.Input}>Input</IonSelectOption>
                             <IonSelectOption value={IOType.Output}>Output</IonSelectOption>
                         </IonSelect>
@@ -41,7 +49,7 @@ const AddModal: React.FC<ContainerProps> = ({ opened, setShowModal }) => {
                 </IonList>
             </IonContent>
             <IonButton color='success' onClick={() => addIO()}>
-                <span className="white--text">Save</span>
+                <span className='white--text'>Save</span>
             </IonButton>
             <IonButton color='danger' onClick={() => setShowModal(false)}>Cancel</IonButton>
         </IonModal >
