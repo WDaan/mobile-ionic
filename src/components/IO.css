@@ -4,7 +4,20 @@
     font-size: 1.4em;
 }
 
+.badgeContainer {
+    justify-content: center;
+}
+
 .badge {
-    width: 1.4em;
-    height: 1.4em;
+    width: 1.8em;
+    height: 1.6em;
+    color: white;
+}
+
+.toggle {
+    float: right;
+}
+
+.card {
+    padding: 0.3em;
 }

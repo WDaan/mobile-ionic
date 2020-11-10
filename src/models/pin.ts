@@ -10,5 +10,5 @@ export enum IOType {
 }
 
 export class Pin implements iPin {
-    constructor(public pin: number, public status: boolean, public type: IOType) { }
+    constructor(public pin: number, public type: IOType, public status: boolean = false) { }
 }

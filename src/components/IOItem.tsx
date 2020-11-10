@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { IonBadge, IonLabel, IonItem, IonToggle } from '@ionic/react'
+import { IonBadge, IonTitle, IonRow, IonCol, IonToggle, IonIcon } from '@ionic/react'
+import { bulbOutline } from 'ionicons/icons'
 
 import './IO.css'
 
@@ -16,19 +17,29 @@ const IOItem: React.FC<ContainerProps> = ({ pin }) => {
     }
 
     const statusColor = pin.status ? 'success' : 'danger'
+    const input = pin.type === IOType.Input
 
     return (
-        <IonItem>
-            <IonLabel>{pin.pin}</IonLabel>
-            { pin.type === IOType.Input && (<IonBadge className='badge' color={statusColor}> </IonBadge>)}
-            { pin.type === IOType.Output &&
-                (<IonToggle
-                    color='success' mode='ios'
-                    checked={pin.status}
-                    onIonChange={e => setChecked(e.detail.checked)}
-                />)
+        <IonRow class="item">
+            <IonCol>
+                <IonTitle>Pin: {pin.pin}</IonTitle>
+            </IonCol>
+            <IonCol className="badgeContainer" style={{ display: input ? '' : 'flex' }}>
+                <IonBadge className='badge' style={{ float: input ? 'right' : '' }} color={statusColor}>
+                    <IonIcon icon={bulbOutline} />
+                </IonBadge>
+            </IonCol>
+            { !input &&
+                (
+                    <IonCol>
+                        <IonToggle class="toggle"
+                            color='success' mode='ios'
+                            checked={pin.status}
+                            onIonChange={e => setChecked(e.detail.checked)}
+                        />
+                    </IonCol>)
             }
-        </IonItem>
+        </IonRow>
     )
 }
 

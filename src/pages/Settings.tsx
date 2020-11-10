@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFabButton, IonFab, IonIcon } from '@ionic/react'
-import { add } from 'ionicons/icons';
+import { add } from 'ionicons/icons'
 
 
 import './Settings.css'
 
 import AddModal from '../components/AddModal'
+import IOSettingsList from '../components/IOSettingsList'
 
 const Tab2: React.FC = () => {
 
-    const [showModal, setShowModal] = useState<boolean>(true)
+    const [showModal, setShowModal] = useState<boolean>(false)
 
     return (
         <IonPage>
@@ -24,9 +25,10 @@ const Tab2: React.FC = () => {
                         <IonTitle size='large'>Settings</IonTitle>
                     </IonToolbar>
                 </IonHeader>
+                <IOSettingsList />
                 <AddModal opened={showModal} setShowModal={setShowModal} />
-                <IonFab vertical="bottom" horizontal="end" slot="fixed">
-                    <IonFabButton color="success" onClick={() => setShowModal(true)}>
+                <IonFab vertical='bottom' horizontal='end' slot='fixed'>
+                    <IonFabButton color='success' onClick={() => setShowModal(true)}>
                         <IonIcon icon={add} />
                     </IonFabButton>
                 </IonFab>
