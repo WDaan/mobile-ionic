@@ -35,4 +35,15 @@ app.delete('/:pin', (req, res) => {
     res.send('ok')
 })
 
+app.put('/:pin', (req, res) => {
+    const pin = parseInt(req.params.pin, 10)
+    Gpio.deleteIo(pin)
+    Gpio.addIo(pin, req.body.mode)
+    res.send('ok')
+})
+
+app.get('/connect', (req, res) => {
+    res.send('success')
+})
+
 module.exports = app
