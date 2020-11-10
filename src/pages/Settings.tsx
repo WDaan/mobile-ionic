@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFabButton, IonFab, IonIcon } from '@ionic/react'
 import { add } from 'ionicons/icons'
-
+import { useSetRecoilState } from 'recoil'
 
 import AddModal from '../components/AddModal'
 import IOSettingsList from '../components/IOSettingsList'
 import ConnectHostForm from '../components/ConnectHostForm'
+
 
 const Tab2: React.FC = () => {
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { IonBadge, IonTitle, IonRow, IonCol, IonToggle, IonIcon } from '@ionic/react'
 import { bulbOutline } from 'ionicons/icons'
 
@@ -6,6 +6,7 @@ import './IO.css'
 
 import { iPin, IOType } from '../models/pin'
 import IO from '../services/io'
+import queryCache from '../services/queryCache'
 
 interface ContainerProps {
     pin: iPin
@@ -13,8 +14,9 @@ interface ContainerProps {
 
 const IOItem: React.FC<ContainerProps> = ({ pin }) => {
 
-    function setChecked(value: boolean) {
-        IO.setIo(pin.pin, value)
+    async function setChecked(value: boolean) {
+       await IO.setIo(pin.pin, value)
+       queryCache.invalidateQueries('ios-Outputs')
     }
 
     const statusColor = pin.status ? 'success' : 'danger'

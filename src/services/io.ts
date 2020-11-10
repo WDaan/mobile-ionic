@@ -1,7 +1,6 @@
 import { Pin, IOType } from '../models/pin'
 import axios from 'axios'
 
-
 class IO {
     private axios: any
 
@@ -29,10 +28,8 @@ class IO {
             .then((res: any) => res.data.map((el: any) => new Pin(el.pin, el.mode === 'in' ? IOType.Input : IOType.Output, el.status)))
     }
 
-    setIo(pin: number, status: boolean) {
+    async setIo(pin: number, status: boolean) {
         this.axios.post(`/${pin}`, { status: status ? 1 : 0 })
-
-        return this.fetchIos()
     }
 
 
@@ -45,6 +42,10 @@ class IO {
     setHost(host: string) {
         localStorage.setItem('host', host)
         this.initAxios()
+    }
+
+    checkHost(host: string) {
+        return this.axios.get(`${host}/connect`)
     }
 }
 

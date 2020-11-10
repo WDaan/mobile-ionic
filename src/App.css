@@ -12,7 +12,7 @@
 }
 
 .text-center {
-    text-align: center;
+    text-align: center !important;
 }
 
 .no-padding {

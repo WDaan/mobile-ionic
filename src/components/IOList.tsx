@@ -1,27 +1,26 @@
-import React, { useEffect, useState } from 'react'
-import { IonCard, IonList, IonCardContent, IonTitle } from '@ionic/react'
+import React from 'react'
+import { IonCard, IonList, IonCardContent, IonTitle, IonLabel } from '@ionic/react'
+import { useQuery } from 'react-query'
 
 import './IO.css'
 
 import IOItem from './IOItem'
-
-import IO from '../services/io'
-
 import { IOType, Pin } from '../models/pin'
-
-import { ios as iosAtom } from '../services/store'
-
-import { useRecoilValue } from 'recoil'
+import IO from '../services/io'
 
 interface ContainerProps {
     type: IOType
 }
 
 const IOList: React.FC<ContainerProps> = ({ type }) => {
-
-    const ios = useRecoilValue(iosAtom)
-
     const title = type === IOType.Input ? 'Inputs' : 'Outputs'
+
+    async function fetchIos() {
+        const data = await IO.fetchIos()
+        return data.filter((pin: Pin) => pin.type === type)
+    }
+    const { data } = useQuery(`ios-${title}`, fetchIos)
+
 
     return (
         <div>
@@ -29,15 +28,19 @@ const IOList: React.FC<ContainerProps> = ({ type }) => {
             <IonCard>
                 <IonCardContent className='no-padding pr-1'>
                     <IonList lines='inset'>
-                        {ios && ios.length &&
-                            ios.filter((pin: Pin) => pin.type === type)
-                                .map((io: Pin) =>
-                                    <IOItem key={io.pin} pin={io} />)
+                        {data && data.map((io: Pin) =>
+                            <IOItem key={io.pin} pin={io} />)
                         }
+                        {!data && (
+                            <IonList lines='inset' className='text-center'>
+                                <IonLabel>
+                                    <span >None available</span>
+                                </IonLabel>
+                            </IonList>)}
                     </IonList>
                 </IonCardContent>
             </IonCard>
-        </div>
+        </div >
     )
 }
 

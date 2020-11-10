@@ -1,14 +1,24 @@
 import React, { useState } from 'react'
-import { IonCard, IonButton, IonIcon, IonInput, IonTitle, IonItem, IonLabel, IonSelect, IonSelectOption, IonCardContent } from '@ionic/react'
-import { checkmarkOutline } from 'ionicons/icons'
+import { IonToast, IonCard, IonButton, IonIcon, IonInput, IonItem, IonLabel, IonCardContent } from '@ionic/react'
+import { saveOutline } from 'ionicons/icons'
+
+import IO from '../services/io'
 
 const ConnectHostForm: React.FC = () => {
 
-    const [host, setHost] = useState<string>()
+    const [host, setHost] = useState<string>(localStorage.getItem('host') || 'http://10.0.0.26:3000/')
+    const [toastFail, showFail] = useState<boolean>(false)
+    const [toastSuccess, showSuccess] = useState<boolean>(false)
 
-    function saveHost() {
+    async function saveHost() {
+        IO.checkHost(host).then((res: any) => {
+            const { data, status } = res
+            if (data === 'success' && status === 200) {
+                IO.setHost(host)
+                return showSuccess(true)
+            }
 
-
+        }).catch(() => showFail(true))
     }
 
     return (
@@ -21,11 +31,25 @@ const ConnectHostForm: React.FC = () => {
                             value={host} placeholder='Enter host'
                             onIonChange={e => setHost(e.detail.value!)} />
                         <IonButton className='float-right' color='success' onClick={() => saveHost()}>
-                            <IonIcon className='white--text' icon={checkmarkOutline} />
+                            <IonIcon className='white--text' icon={saveOutline} />
                         </IonButton>
                     </IonItem>
                 </IonCardContent>
             </IonCard>
+            <IonToast
+                color='danger'
+                isOpen={toastFail}
+                onDidDismiss={() => showFail(false)}
+                message='Failed to connect to host'
+                duration={500}
+            />
+            <IonToast
+                color='success'
+                isOpen={toastSuccess}
+                onDidDismiss={() => showSuccess(false)}
+                message='Connected to host successfully!'
+                duration={500}
+            />
         </div>
     )
 }

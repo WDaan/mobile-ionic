@@ -19,8 +19,8 @@ const AddModal: React.FC<ContainerProps> = ({ opened, setShowModal }) => {
     const setIos = useSetRecoilState(ios)
 
     async function addIO() {
-        if (!pin) return
-        
+        if (!pin) { return }
+
         const mode = type === IOType.Input ? 'in' : 'out'
         await IO.addIo(pin, mode)
         setIos(await IO.fetchIos())
@@ -41,7 +41,12 @@ const AddModal: React.FC<ContainerProps> = ({ opened, setShowModal }) => {
                     </IonItem>
                     <IonItem>
                         <IonLabel position='fixed'>Type</IonLabel>
-                        <IonSelect interface='action-sheet' aria-required value={type} placeholder='Type' onIonChange={e => setType(e.detail.value)}>
+                        <IonSelect interface='action-sheet'
+                            aria-required
+                            value={type}
+                            placeholder='Type'
+                            onIonChange={e => setType(e.detail.value)}
+                        >
                             <IonSelectOption value={IOType.Input}>Input</IonSelectOption>
                             <IonSelectOption value={IOType.Output}>Output</IonSelectOption>
                         </IonSelect>

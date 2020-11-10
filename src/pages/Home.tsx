@@ -1,25 +1,24 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRefresher, IonRefresherContent } from '@ionic/react'
 import React, { useEffect } from 'react'
-import { RefresherEventDetail } from '@ionic/core';
-
-import IOList from '../components/IOList'
+import { RefresherEventDetail } from '@ionic/core'
+import { useSetRecoilState } from 'recoil'
 
 import './Home.css'
 
-import { useSetRecoilState } from 'recoil'
+import IOList from '../components/IOList'
 
 import { ios } from '../services/store'
+import { IOType } from '../models/pin'
 import IO from '../services/io'
 
-import { IOType } from '../models/pin'
 
 const Home: React.FC = () => {
 
     const setIos = useSetRecoilState(ios)
 
     const fetchIos = async () => {
-        const ios = await IO.fetchIos()
-        setIos(ios)
+        const data = await IO.fetchIos()
+        setIos(data)
     }
 
     useEffect(() => {
@@ -29,7 +28,7 @@ const Home: React.FC = () => {
     async function doRefresh(event: CustomEvent<RefresherEventDetail>) {
         await fetchIos()
 
-        event.detail.complete();
+        event.detail.complete()
     }
 
     return (
