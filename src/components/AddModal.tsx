@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { IonModal, IonButton, IonContent, IonList, IonInput, IonTitle, IonItem, IonLabel, IonSelect, IonSelectOption } from '@ionic/react'
-import { useSetRecoilState } from 'recoil'
 
-import { ios } from '../services/store'
 import { IOType } from '../models/pin'
 import IO from '../services/io'
 
@@ -13,17 +11,17 @@ interface ContainerProps {
 
 const AddModal: React.FC<ContainerProps> = ({ opened, setShowModal }) => {
 
-    const [pin, setPin] = useState<number>()
-    const [type, setType] = useState<IOType>()
+    const [pin, setPin] = useState<number | null>()
+    const [type, setType] = useState<IOType | null>()
 
-    const setIos = useSetRecoilState(ios)
 
     async function addIO() {
         if (!pin) { return }
 
         const mode = type === IOType.Input ? 'in' : 'out'
         await IO.addIo(pin, mode)
-        setIos(await IO.fetchIos())
+        setPin(null)
+        setType(null)
         setShowModal(false)
     }
 

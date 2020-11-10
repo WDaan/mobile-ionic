@@ -37,42 +37,37 @@ import './App.css'
 
 import { ReactQueryCacheProvider } from 'react-query'
 
-import { RecoilRoot } from 'recoil'
-
-import queryCache from './services/queryCache'
+import queryCache, { clearIoCache } from './services/queryCache'
 
 const App: React.FC = () => {
 
     setInterval(() => {
-        queryCache.invalidateQueries('ios-Outputs')
-        queryCache.invalidateQueries('ios-Inputs')
-    }, 1000)
+        clearIoCache()
+    }, 2000)
 
     return (
         <IonApp>
-            <RecoilRoot>
-                <ReactQueryCacheProvider queryCache={queryCache}>
-                    <IonReactRouter>
-                        <IonTabs>
-                            <IonRouterOutlet>
-                                <Route path='/home' component={Home} exact />
-                                <Route path='/settings' component={Settings} exact />
-                                <Route path='/' render={() => <Redirect to='/home' />} exact />
-                            </IonRouterOutlet>
-                            <IonTabBar slot='bottom'>
-                                <IonTabButton tab='home' href='/home'>
-                                    <IonIcon icon={home} />
-                                    <IonLabel>Home</IonLabel>
-                                </IonTabButton>
-                                <IonTabButton tab='settings' href='/settings'>
-                                    <IonIcon icon={cog} />
-                                    <IonLabel>Settings</IonLabel>
-                                </IonTabButton>
-                            </IonTabBar>
-                        </IonTabs>
-                    </IonReactRouter>
-                </ReactQueryCacheProvider>
-            </RecoilRoot>
+            <ReactQueryCacheProvider queryCache={queryCache}>
+                <IonReactRouter>
+                    <IonTabs>
+                        <IonRouterOutlet>
+                            <Route path='/home' component={Home} exact />
+                            <Route path='/settings' component={Settings} exact />
+                            <Route path='/' render={() => <Redirect to='/home' />} exact />
+                        </IonRouterOutlet>
+                        <IonTabBar slot='bottom'>
+                            <IonTabButton tab='home' href='/home'>
+                                <IonIcon icon={home} />
+                                <IonLabel>Home</IonLabel>
+                            </IonTabButton>
+                            <IonTabButton tab='settings' href='/settings'>
+                                <IonIcon icon={cog} />
+                                <IonLabel>Settings</IonLabel>
+                            </IonTabButton>
+                        </IonTabBar>
+                    </IonTabs>
+                </IonReactRouter>
+            </ReactQueryCacheProvider>
         </IonApp>
     )
 }

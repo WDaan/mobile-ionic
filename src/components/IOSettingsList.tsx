@@ -1,25 +1,29 @@
 import React from 'react'
-import { IonCard, IonList, IonCardContent, IonIcon, IonTitle, IonButton, IonCol, IonRow, IonSelect, IonSelectOption, IonCardTitle } from '@ionic/react'
+import { IonCard, IonList, IonCardContent, IonIcon, IonTitle, IonButton, IonCol, IonRow, IonSelect, IonSelectOption } from '@ionic/react'
 import { trashOutline } from 'ionicons/icons'
-import { useRecoilState } from 'recoil'
+import { useQuery } from 'react-query'
 
-import { ios as iosAtom } from '../services/store'
 import { IOType, Pin } from '../models/pin'
 import IO from '../services/io'
 
-const IOSettingsList: React.FC = () => {
+import { clearIoCache } from '../services/queryCache'
 
-    const [ios, setIos] = useRecoilState(iosAtom)
+const IOSettingsList: React.FC = () => {
+    async function fetchIos() {
+        const ios = await IO.fetchIos()
+        return ios.sort((a: Pin, b: Pin) => a.pin - b.pin)
+    }
+    const { data } = useQuery(`ios`, fetchIos)
 
     async function deleteIo(io: Pin) {
         await IO.deleteIo(io.pin)
-        setIos(await IO.fetchIos())
+        clearIoCache()
     }
 
     async function changeType(io: Pin, type: any) {
         const mode = type === IOType.Input ? 'in' : 'out'
         await IO.editIO(io.pin, mode)
-        setIos(await IO.fetchIos())
+        clearIoCache()
     }
 
 
@@ -29,7 +33,7 @@ const IOSettingsList: React.FC = () => {
             <IonCard>
                 <IonCardContent className='no-padding pr-1'>
                     <IonList lines='inset'>
-                        {ios.length && ios.map((io: Pin) =>
+                        {data && data.map((io: Pin) =>
                             <IonRow key={io.pin}>
                                 <IonCol>
                                     <IonTitle>Pin: {io.pin}</IonTitle>

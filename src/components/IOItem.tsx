@@ -6,7 +6,6 @@ import './IO.css'
 
 import { iPin, IOType } from '../models/pin'
 import IO from '../services/io'
-import queryCache from '../services/queryCache'
 
 interface ContainerProps {
     pin: iPin
@@ -14,9 +13,8 @@ interface ContainerProps {
 
 const IOItem: React.FC<ContainerProps> = ({ pin }) => {
 
-    async function setChecked(value: boolean) {
-       await IO.setIo(pin.pin, value)
-       queryCache.invalidateQueries('ios-Outputs')
+    function setChecked(value: boolean) {
+        IO.setIo(pin.pin, value)
     }
 
     const statusColor = pin.status ? 'success' : 'danger'

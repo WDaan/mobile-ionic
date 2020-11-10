@@ -16,10 +16,11 @@ const IOList: React.FC<ContainerProps> = ({ type }) => {
     const title = type === IOType.Input ? 'Inputs' : 'Outputs'
 
     async function fetchIos() {
-        const data = await IO.fetchIos()
-        return data.filter((pin: Pin) => pin.type === type)
+        const ios = await IO.fetchIos()
+        return ios
+            .sort((a: Pin, b: Pin) => a.pin - b.pin)
     }
-    const { data } = useQuery(`ios-${title}`, fetchIos)
+    const { data } = useQuery(`ios`, fetchIos)
 
 
     return (
@@ -28,7 +29,7 @@ const IOList: React.FC<ContainerProps> = ({ type }) => {
             <IonCard>
                 <IonCardContent className='no-padding pr-1'>
                     <IonList lines='inset'>
-                        {data && data.map((io: Pin) =>
+                        {data && data.filter((pin: Pin) => pin.type === type).map((io: Pin) =>
                             <IOItem key={io.pin} pin={io} />)
                         }
                         {!data && (

@@ -1,2 +1,7 @@
 import { QueryCache } from 'react-query'
-export default new QueryCache()
+const queryCache = new QueryCache()
+export default queryCache
+
+export function clearIoCache() {
+    queryCache.invalidateQueries('ios')
+}

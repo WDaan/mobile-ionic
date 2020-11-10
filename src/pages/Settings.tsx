@@ -1,16 +1,22 @@
-import React, { useState, useEffect } from 'react'
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFabButton, IonFab, IonIcon } from '@ionic/react'
+import React, { useState } from 'react'
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFabButton, IonFab, IonIcon, IonRefresher, IonRefresherContent } from '@ionic/react'
+import { RefresherEventDetail } from '@ionic/core'
 import { add } from 'ionicons/icons'
-import { useSetRecoilState } from 'recoil'
 
 import AddModal from '../components/AddModal'
 import IOSettingsList from '../components/IOSettingsList'
 import ConnectHostForm from '../components/ConnectHostForm'
 
+import { clearIoCache } from '../services/queryCache'
 
 const Tab2: React.FC = () => {
 
     const [showModal, setShowModal] = useState<boolean>(false)
+
+    async function doRefresh(event: CustomEvent<RefresherEventDetail>) {
+        clearIoCache()
+        event.detail.complete()
+    }
 
     return (
         <IonPage>
@@ -20,6 +26,9 @@ const Tab2: React.FC = () => {
                 </IonToolbar>
             </IonHeader>
             <IonContent fullscreen>
+                <IonRefresher slot='fixed' onIonRefresh={doRefresh}>
+                    <IonRefresherContent />
+                </IonRefresher>
                 <IonHeader collapse='condense'>
                     <IonToolbar>
                         <IonTitle size='large'>Settings</IonTitle>
