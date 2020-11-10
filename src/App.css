@@ -11,12 +11,24 @@
     color: white;
 }
 
+.text-center {
+    text-align: center;
+}
+
 .no-padding {
     padding: 0;
 }
 
 .float-right {
     float: right;
+}
+
+.pt-1 {
+    padding-top: 1em;
+}
+
+.pb-1 {
+    padding-bottom: 1em;
 }
 
 .pr-1 {
