@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import { IonCard, IonList, IonCardContent, IonIcon, IonTitle, IonButton, IonCol, IonRow, IonSelect, IonSelectOption } from '@ionic/react'
 import { trashOutline } from 'ionicons/icons'
 
-import './IOSettingsList.css'
-
 import IO from '../services/io'
 import { IOType, iPin } from '../models/pin'
 
@@ -17,7 +15,7 @@ const IOSettingsList: React.FC = () => {
 
     return (
         <IonCard>
-            <IonCardContent class="no-padding">
+            <IonCardContent className="no-padding pr-1">
                 <IonList lines='inset'>
                     {ios.map(io =>
                         <IonRow key={io.pin}>
@@ -31,7 +29,7 @@ const IOSettingsList: React.FC = () => {
                                 </IonSelect>
                             </IonCol>
                             <IonCol>
-                                <IonButton className="deleteButton" color='danger' onClick={() => deleteIo(io)}>
+                                <IonButton className="float-right" color='danger' onClick={() => deleteIo(io)}>
                                     <IonIcon icon={trashOutline} />
                                 </IonButton>
                             </IonCol>

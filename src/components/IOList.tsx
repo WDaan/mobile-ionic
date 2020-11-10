@@ -21,7 +21,7 @@ const IOList: React.FC<ContainerProps> = ({ type }) => {
         <div>
             <IonTitle className='title'>{type}</IonTitle>
             <IonCard>
-                <IonCardContent className="card">
+                <IonCardContent className="no-padding pr-1">
                     <IonList lines='inset'>
                         {ios.map(io =>
                             <IOItem key={io.pin} pin={io} />)

@@ -1,0 +1,28 @@
+.container {
+    padding: 10px;
+}
+
+.title {
+    margin: 1em 0em 1em 0em;
+    text-align: center;
+}
+
+.white--text {
+    color: white;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.float-right {
+    float: right;
+}
+
+.pr-1 {
+    padding-right: 1em;
+}
+
+.py-2 {
+    padding: 0 2em 0 2em;
+}

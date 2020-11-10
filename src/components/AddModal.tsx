@@ -3,8 +3,6 @@ import { IonModal, IonButton, IonContent, IonList, IonInput, IonTitle, IonItem, 
 
 import { IOType } from '../models/pin'
 
-import './AddModal.css'
-
 interface ContainerProps {
     opened: boolean,
     setShowModal: any
@@ -31,7 +29,7 @@ const AddModal: React.FC<ContainerProps> = ({ opened, setShowModal }) => {
                         <IonInput
                             type='number'
                             value={pin} placeholder='Enter Number'
-                            onIonChange={e => setPin(parseInt(e.detail.value!, 10))}/>
+                            onIonChange={e => setPin(parseInt(e.detail.value!, 10))} />
                     </IonItem>
                     <IonItem>
                         <IonLabel position='fixed'>Type</IonLabel>
@@ -42,7 +40,9 @@ const AddModal: React.FC<ContainerProps> = ({ opened, setShowModal }) => {
                     </IonItem>
                 </IonList>
             </IonContent>
-            <IonButton color='success' onClick={() => addIO()}>Save</IonButton>
+            <IonButton color='success' onClick={() => addIO()}>
+                <span className="white--text">Save</span>
+            </IonButton>
             <IonButton color='danger' onClick={() => setShowModal(false)}>Cancel</IonButton>
         </IonModal >
     )
