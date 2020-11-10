@@ -1,0 +1,36 @@
+{
+    "name": "mobile-ionic-server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "dev": "nodemon",
+        "lint": "eslint --fix ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WDaan/mobile-ionic.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/WDaan/mobile-ionic/issues"
+    },
+    "homepage": "https://github.com/WDaan/mobile-ionic#readme",
+    "devDependencies": {
+        "eslint": "^7.13.0",
+        "eslint-config-standard": "^16.0.1",
+        "eslint-plugin-import": "^2.22.1",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-promise": "^4.2.1",
+        "nodemon": "^2.0.6"
+    },
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "onoff": "^6.0.1"
+    }
+}
