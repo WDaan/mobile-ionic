@@ -23,6 +23,7 @@ class GPIO {
     deleteIo(pin) {
         this.config = this.config.filter(el => el.pin !== pin)
         delete this.ios[pin]
+        this.save()
     }
 
     save() {
