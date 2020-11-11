@@ -18,7 +18,7 @@ git clone --single-branch --branch server git@github.com:WDaan/mobile-ionic.git
 
 ## Screenhots
 
-![home](/screenhots/home.jpg?raw=true "home")
-![settings](/screenhots/settings.jpg?raw=true "settings")
-![add](/screenhots/add.jpg?raw=true "add")
-![info](/screenhots/info.png?raw=true "info")
+![home](/screenshots/home.jpg?raw=true "home")
+![settings](/screenshots/settings.jpg?raw=true "settings")
+![add](/screenshots/add.jpg?raw=true "add")
+![info](/screenshots/info.png?raw=true "info")
