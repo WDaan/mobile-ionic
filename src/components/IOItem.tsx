@@ -27,7 +27,7 @@ const IOItem: React.FC<ContainerProps> = ({ pin }) => {
             </IonCol>
             <IonCol className='badgeContainer' style={{ display: input ? '' : 'flex' }}>
                 <IonBadge className='badge' style={{ float: input ? 'right' : '' }} color={statusColor}>
-                    <IonIcon icon={bulbOutline} />
+                    <IonIcon className="bulbIcon" icon={bulbOutline} />
                 </IonBadge>
             </IonCol>
             { !input &&

@@ -9,9 +9,14 @@
 }
 
 .badge {
-    width: 1.8em;
-    height: 1.6em;
+    width: 2.2em;
+    height: 2em;
     color: white;
+}
+
+.bulbIcon {
+    height: 1.5em;
+    width: 1.5em;
 }
 
 .toggle {
