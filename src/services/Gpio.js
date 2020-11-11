@@ -16,10 +16,7 @@ class GPIO {
 
     addIo(pin, mode) {
         this.config.push({ pin, mode })
-        if (mode === 'in')
-            this.ios[pin] = new Gpio(pin, mode)
-        else
-            this.ios[pin] = new Gpio(pin, mode, 'both')
+        if (mode === 'in') { this.ios[pin] = new Gpio(pin, mode) } else { this.ios[pin] = new Gpio(pin, mode, 'both') }
         this.save()
     }
 
