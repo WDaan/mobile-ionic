@@ -14,3 +14,4 @@
 ![home](/screenhots/home.jpg?raw=true "home")
 ![settings](/screenhots/settings.jpg?raw=true "settings")
 ![add](/screenhots/add.jpg?raw=true "add")
+![info](/screenhots/info.png?raw=true "info")

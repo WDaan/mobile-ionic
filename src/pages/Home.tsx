@@ -1,10 +1,11 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRefresher, IonRefresherContent } from '@ionic/react'
+import { IonContent, IonHeader, IonPage, IonButtons, IonTitle, IonToolbar, IonRefresher, IonRefresherContent } from '@ionic/react'
 import React from 'react'
 import { RefresherEventDetail } from '@ionic/core'
 
 import './Home.css'
 
 import IOList from '../components/IOList'
+import InfoModal from '../components/InfoModal'
 
 import { IOType } from '../models/pin'
 import { clearIoCache } from '../services/queryCache'
@@ -21,6 +22,9 @@ const Home: React.FC = () => {
             <IonHeader>
                 <IonToolbar>
                     <IonTitle>Home</IonTitle>
+                    <IonButtons slot='end'>
+                        <InfoModal />
+                    </IonButtons>
                 </IonToolbar>
             </IonHeader>
             <IonContent>
@@ -32,6 +36,7 @@ const Home: React.FC = () => {
                     <IOList type={IOType.Output} />
                 </div>
             </IonContent>
+
         </IonPage >
     )
 }
