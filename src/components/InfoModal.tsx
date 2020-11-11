@@ -3,7 +3,7 @@ import { IonModal, IonButton, IonContent, IonIcon, IonTitle, IonCol, IonCard, Io
 import { informationCircleOutline } from 'ionicons/icons'
 
 const InfoModal: React.FC = () => {
-    const [showModal, setShowModal] = useState<boolean>(true)
+    const [showModal, setShowModal] = useState<boolean>(false)
 
     function openGuide() {
         window.open('https://github.com/WDaan/mobile-ionic', '_blank')
