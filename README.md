@@ -6,7 +6,14 @@
 
 [website](https://wdaan-263417.web.app)
 
-### server install instructions on server branch
+## server install instructions
+-  clone this repo with:
+```
+git clone --single-branch --branch server git@github.com:WDaan/mobile-ionic.git
+```
+- install 'npm install'
+- install pm2 'npm i -g pm2'
+- run 'pm2 start'
 
 
 ## Screenhots

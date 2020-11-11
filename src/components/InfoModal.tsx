@@ -6,7 +6,7 @@ const InfoModal: React.FC = () => {
     const [showModal, setShowModal] = useState<boolean>(true)
 
     function openGuide() {
-        window.open('https://github.com/WDaan/mobile-ionic/tree/server', '_blank')
+        window.open('https://github.com/WDaan/mobile-ionic', '_blank')
     }
 
     return (
