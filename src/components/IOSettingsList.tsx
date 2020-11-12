@@ -1,5 +1,5 @@
 import React from 'react'
-import { IonCard, IonList, IonCardContent, IonIcon, IonTitle, IonButton, IonCol, IonRow, IonSelect, IonSelectOption } from '@ionic/react'
+import { IonCard, IonList, IonCardContent, IonLabel, IonIcon, IonTitle, IonButton, IonCol, IonRow, IonSelect, IonSelectOption } from '@ionic/react'
 import { trashOutline } from 'ionicons/icons'
 import { useQuery } from 'react-query'
 
@@ -56,6 +56,12 @@ const IOSettingsList: React.FC = () => {
                             </IonRow>
                         )
                         }
+                        {!data && (
+                            <IonList lines='inset' className='text-center'>
+                                <IonLabel>
+                                    <span >None available</span>
+                                </IonLabel>
+                            </IonList>)}
                     </IonList>
                 </IonCardContent >
             </IonCard >
