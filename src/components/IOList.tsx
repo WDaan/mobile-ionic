@@ -17,8 +17,7 @@ const IOList: React.FC<ContainerProps> = ({ type }) => {
 
     async function fetchIos() {
         const ios = await IO.fetchIos()
-        return ios
-            .sort((a: Pin, b: Pin) => a.pin - b.pin)
+        return ios.sort((a: Pin, b: Pin) => a.pin - b.pin)
     }
     const { data } = useQuery(`ios`, fetchIos)
 

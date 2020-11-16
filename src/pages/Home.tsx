@@ -36,7 +36,6 @@ const Home: React.FC = () => {
                     <IOList type={IOType.Output} />
                 </div>
             </IonContent>
-
         </IonPage >
     )
 }

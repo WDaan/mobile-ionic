@@ -34,6 +34,7 @@ const AddModal: React.FC<ContainerProps> = ({ opened, setShowModal }) => {
                         <IonLabel position='fixed'>Pin</IonLabel>
                         <IonInput
                             type='number'
+                            min="0" max="30"
                             value={pin} placeholder='Enter Number'
                             onIonChange={e => setPin(parseInt(e.detail.value!, 10))} />
                     </IonItem>

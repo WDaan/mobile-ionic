@@ -9,7 +9,7 @@ import ConnectHostForm from '../components/ConnectHostForm'
 
 import { clearIoCache } from '../services/queryCache'
 
-const Tab2: React.FC = () => {
+const Settings: React.FC = () => {
 
     const [showModal, setShowModal] = useState<boolean>(false)
 
@@ -47,4 +47,4 @@ const Tab2: React.FC = () => {
     )
 }
 
-export default Tab2
+export default Settings

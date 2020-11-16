@@ -20,4 +20,4 @@ git clone --single-branch --branch server git@github.com:WDaan/mobile-ionic.git
 
 |                                    |                                    |                                    |
 | :--------------------------------: | :--------------------------------: | :--------------------------------: |
-| ![](/screenshots/home.jpg?raw=true) | ![](/screenshots/settings.jpg?raw=true) | ![](/screenshots/add.jpg?raw=true) |
+| ![](/screenshots/home2.jpg?raw=true) | ![](/screenshots/settings.jpg?raw=true) | ![](/screenshots/add.jpg?raw=true) |
